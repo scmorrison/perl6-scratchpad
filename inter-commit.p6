@@ -6,12 +6,12 @@
 use v6;
 
 class InterCommitWatcher {
-    has $supplier;
+    has $.supplier;
     has $.log;
 
     submethod BUILD(:$base) {
-        $supplier = Supplier.new;
-        $!log = $supplier.Supply;
+        $!supplier = Supplier.new;
+        $!log = $!supplier.Supply;
         self!watch_HEAD();
         self!watch_dir($base);
     }
@@ -21,7 +21,7 @@ class InterCommitWatcher {
             for dir('.inter-commit') {
                 unlink($_);
             }
-            $supplier.emit("HEAD moved; cleared backups");
+            $!supplier.emit("HEAD moved; cleared backups");
         });
     }
 
@@ -36,10 +36,10 @@ class InterCommitWatcher {
                 spurt '.inter-commit/index', :append,
                     "$change_id $backup\n";
                 copy $backup, ".inter-commit/$change_id";
-                $supplier.emit("Backed up $backup");
+                $!supplier.emit("Backed up $backup");
                 CATCH {
                     default {
-                        $supplier.emit("ERROR: could not back up $backup: $_");
+                        $!supplier.emit("ERROR: could not back up $backup: $_");
                     }
                 }
             });
