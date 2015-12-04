@@ -1,6 +1,7 @@
 # Refactor of Jonathan Worthington's inter-commit 
 # reactive Perl 6 example to work with the new
-# Supply / Supplier implementation.
+# Supply / Supplier implementation:
+# https://github.com/rakudo/rakudo/commit/a8231f14b2d5400e0653aac453496e00318142c5
 
 use v6;
 
