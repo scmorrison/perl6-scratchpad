@@ -1,3 +1,7 @@
+# Refactor of Jonathan Worthington's inter-commit 
+# reactive Perl 6 example to work with the new
+# Supply / Supplier implementation.
+
 use v6;
 
 class InterCommitWatcher {
